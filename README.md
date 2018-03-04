@@ -9,11 +9,11 @@ This is the shell script of to make (static) libraries below using gfortran and 
 
 ## How to use
 
-'''
+```
 git clone https://github.com/ya-mat/lapack_etc_make.git
 cd lapack_etc_make
 sh make
-'''
+```
 
 You can get these libraries below.
 
