@@ -1,12 +1,8 @@
 #!/bin/sh
 
 # before
-sudo apt install gcc
-sudo apt install gfortran
-sudo apt install python
-sudo apt install ruby
-sudo apt install perl
-sudo apt install ghc
+#sudo apt install gcc
+#sudo apt install gfortran
 
 # lapack
 wget http://www.netlib.org/lapack/lapack-3.8.0.tar.gz
@@ -36,6 +32,7 @@ tar zxvf dp.tgz
 cd dfftpack
 sed -e 's/FC=g77/FC=gfortran/g' ./Makefile > ./Makefile2
 sed -e 's/FFLAGS=-O2 -funroll-loops -fexpensive-optimizations/FFLAGS=-O2/g' ./Makefile2 > ./Makefile
+make
 cd ../
 ln -s dfftpack/libdfftpack.a libdfftpack.a
 
