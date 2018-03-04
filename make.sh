@@ -14,7 +14,7 @@ make
 cd ../
 ln -s lapack-3.8.0/librefblas.a librefblas.a
 ln -s lapack-3.8.0/liblapack.a liblapack.a
-n -s lapack-3.8.0/libtmglib.a libtmglib.a
+ln -s lapack-3.8.0/libtmglib.a libtmglib.a
 
 # slatec
 wget http://www.netlib.org/slatec/slatec_src.tgz
