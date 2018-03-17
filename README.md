@@ -1,6 +1,6 @@
 # lapack_etc_make
 
-This is the shell script of to make (static) libraries below using gfortran and gcc.
+This is the shell script to make (static) libraries below using gfortran and gcc.
 
 - lapack-3.8.0
 - slatec
@@ -31,5 +31,8 @@ You must have already installed these softwares below.
 
 - gfortran
 - gcc
-
+- make
+- libtool
+- wget
+- sed
 
