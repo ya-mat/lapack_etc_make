@@ -37,7 +37,7 @@ cd ../
 ln -s dfftpack/libdfftpack.a libdfftpack.a
 
 # libcerf
-wget http://apps.jcns.fz-juelich.de/src/libcerf/libcerf-1.5.tgz
+wget http://apps.jcns.fz-juelich.de/src/libcerf/old/libcerf-1.5.tgz
 tar zxvf libcerf-1.5.tgz
 cd libcerf-1.5/
 mkdir build
