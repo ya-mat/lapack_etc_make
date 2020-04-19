@@ -35,4 +35,5 @@ You must have already installed these softwares below.
 - libtool
 - wget
 - sed
+- cmake
 
