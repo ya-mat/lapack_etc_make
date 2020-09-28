@@ -3,18 +3,23 @@
 # before
 #sudo apt install gcc
 #sudo apt install gfortran
+#sudo apt install wget
+#sudo apt install make
+#sudo apt install sed
+#sudo apt install libtool
+#sudo apt install cmake
 
 # lapack
-wget http://www.netlib.org/lapack/lapack-3.8.0.tar.gz
-tar zxvf lapack-3.8.0.tar.gz
-cd lapack-3.8.0
+wget https://github.com/Reference-LAPACK/lapack/archive/v3.9.0.tar.gz
+tar zxvf v3.9.0.tar.gz
+cd lapack-3.9.0
 cp make.inc.example make.inc
 ulimit -s unlimited
 make
 cd ../
-ln -s lapack-3.8.0/librefblas.a ./librefblas.a
-ln -s lapack-3.8.0/liblapack.a ./liblapack.a
-ln -s lapack-3.8.0/libtmglib.a ./libtmglib.a
+ln -s lapack-3.9.0/librefblas.a ./librefblas.a
+ln -s lapack-3.9.0/liblapack.a ./liblapack.a
+ln -s lapack-3.9.0/libtmglib.a ./libtmglib.a
 
 # slatec
 wget http://www.netlib.org/slatec/slatec_src.tgz
@@ -37,16 +42,21 @@ cd ../
 ln -s dfftpack/libdfftpack.a ./libdfftpack.a
 
 # libcerf
-wget http://apps.jcns.fz-juelich.de/src/libcerf/old/libcerf-1.5.tgz
-tar zxvf libcerf-1.5.tgz
-cd libcerf-1.5/
+#wget http://apps.jcns.fz-juelich.de/src/libcerf/old/libcerf-1.5.tgz
+wget https://jugit.fz-juelich.de/mlz/libcerf/-/archive/master/libcerf-master.tar.gz
+#tar zxvf libcerf-1.5.tgz
+tar zxvf libcerf-master.tar.gz
+#cd libcerf-1.5/
+cd libcerf-master
 mkdir build
-path=$(cd build && pwd) && ./configure --enable-static --prefix=$path
+cd build
+cmake -DBUILD_SHARED_LIBS=OFF ..
 make
 make install
 cd ../
-ln -s libcerf-1.5/build/lib/libcerf.a ./libcerf.a
-cp libcerf-1.5/fortran/ccerflib_f95_interface/use_libcerf_mod.f90 ./
+cd ../
+ln -s libcerf-master/build/lib/libcerf.a ./libcerf.a
+cp libcerf-master/fortran/ccerflib_f95_interface/use_libcerf_mod.f90 ./
 
 # ACM 782 RRQR
 wget http://www.netlib.org/toms-2014-06-10/782 -O 782.sh
