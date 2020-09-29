@@ -5,7 +5,7 @@ This is the shell script to make (static) libraries below using gfortran and gcc
 - lapack-3.9.0
 - slatec
 - dfftpack
-- libcerf-1.5
+- libcerf
 - ACM 782 RRQR
 
 ## How to use
