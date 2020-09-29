@@ -27,7 +27,7 @@ tar zxvf slatec_src.tgz
 cd src
 wget http://www.netlib.org/slatec/slatec4linux.tgz
 tar zxvf slatec4linux.tgz
-env FC=gfortran make
+env FC="gfortran -std=legacy" make
 cd ../
 ln -s src/static/libslatec.a ./libslatec.a
 
@@ -52,7 +52,6 @@ mkdir build
 cd build
 cmake -DBUILD_SHARED_LIBS=OFF ..
 make
-make install
 cd ../
 cd ../
 ln -s libcerf-master/build/lib/libcerf.a ./libcerf.a
