@@ -75,10 +75,10 @@ cd ../
 cd ../
 ln -s rrqr_acm/rrqr.a ./rrqr.a
 
-## Eigen 3.3.7
-#wget https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz
-#tar zxvf eigen-3.3.7.tar.gz
-#cp -r eigen-3.3.7/Eigen ./
+# Eigen 3.3.7
+wget https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz
+tar zxvf eigen-3.3.7.tar.gz
+cp -r eigen-3.3.7/Eigen ./
 
 ## OpenCV-4.4.0
 #wget https://github.com/opencv/opencv/archive/4.4.0.zip
