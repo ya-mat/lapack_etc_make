@@ -2,7 +2,7 @@
 
 This is the shell script to make (static) libraries below using gfortran and gcc.
 
-### for gfortran and g++
+for gfortran and g++
 
 - lapack-3.9.0
 - slatec
@@ -10,7 +10,7 @@ This is the shell script to make (static) libraries below using gfortran and gcc
 - libcerf
 - ACM 782 RRQR
 
-### for g++
+for g++
 
 - Eigen 3.3.7
 
@@ -24,7 +24,7 @@ sh make.sh
 
 You can get these libraries below.
 
-### for gfortran and g++
+for gfortran and g++
 
 - librefblas.a
 - liblapack.a
@@ -34,7 +34,7 @@ You can get these libraries below.
 - libcerf.a
 - (use_libcerf_mod.f90)
 
-### for g++
+for g++
 
 - header files of Eigen (in 'Eigen' directory)
 
