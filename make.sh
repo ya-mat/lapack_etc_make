@@ -15,7 +15,7 @@ tar zxvf v3.9.0.tar.gz
 cd lapack-3.9.0
 cp make.inc.example make.inc
 ulimit -s unlimited
-make
+make -j $(nproc)
 cd ../
 ln -s lapack-3.9.0/librefblas.a ./librefblas.a
 ln -s lapack-3.9.0/liblapack.a ./liblapack.a
@@ -27,7 +27,7 @@ tar zxvf slatec_src.tgz
 cd src
 wget http://www.netlib.org/slatec/slatec4linux.tgz
 tar zxvf slatec4linux.tgz
-env FC="gfortran -std=legacy" make
+env FC="gfortran -std=legacy" make -j $(nproc)
 cd ../
 ln -s src/static/libslatec.a ./libslatec.a
 
@@ -37,7 +37,7 @@ tar zxvf dp.tgz
 cd dfftpack
 sed -e 's/FC=g77/FC=gfortran/g' ./Makefile > ./Makefile2
 sed -e 's/FFLAGS=-O2 -funroll-loops -fexpensive-optimizations/FFLAGS=-O2/g' ./Makefile2 > ./Makefile
-make
+make -j $(nproc)
 cd ../
 ln -s dfftpack/libdfftpack.a ./libdfftpack.a
 
@@ -50,8 +50,8 @@ tar zxvf libcerf-master.tar.gz
 cd libcerf-master
 mkdir build
 cd build
-cmake -DBUILD_SHARED_LIBS=OFF ..
-make
+cmake -D BUILD_SHARED_LIBS=OFF ..
+make -j $(nproc)
 cd ../
 cd ../
 ln -s libcerf-master/build/lib/libcerf.a ./libcerf.a
@@ -70,7 +70,7 @@ cd rrqr_acm/
 cd lib/
 sed -e 's/FORTRAN   = f77/FORTRAN=gfortran/g' ./Makefile > ./Makefile2
 sed -e 's/OPTS      = -u -g -C/OPTS=-O3/g' ./Makefile2 > ./Makefile
-make
+make -j $(nproc)
 cd ../
 cd ../
 ln -s rrqr_acm/rrqr.a ./rrqr.a
@@ -79,12 +79,3 @@ ln -s rrqr_acm/rrqr.a ./rrqr.a
 wget https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz
 tar zxvf eigen-3.3.7.tar.gz
 cp -r eigen-3.3.7/Eigen ./
-
-## OpenCV-4.4.0
-#wget https://github.com/opencv/opencv/archive/4.4.0.zip
-#unzip 4.4.0.zip
-#cd opencv-4.4.0/
-#mkdir build
-#cd build
-#mkdir build2
-#cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=./build2 BUILD_SHARED_LIBS=NO ..
