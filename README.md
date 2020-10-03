@@ -13,7 +13,6 @@ This is the shell script to make (static) libraries below using gfortran and gcc
 ### for g++
 
 - Eigen 3.3.7
-- OpenCV-4.4.0
 
 ## How to use
 
@@ -38,7 +37,6 @@ You can get these libraries below.
 ### for g++
 
 - header files of Eigen (in 'Eigen' directory)
-- libraries of OpenCV
 
 ## Dependency
 
@@ -51,11 +49,3 @@ You must have already installed these softwares below.
 - wget
 - sed
 - cmake
-
-And, OpenCV need these softwares below.
-
-- libgtk2.0-dev
-- pkg-config
-- libavcodec-dev
-- libavformat-dev
-- libswscale-dev
