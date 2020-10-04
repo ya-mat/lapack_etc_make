@@ -79,3 +79,5 @@ ln -s rrqr_acm/rrqr.a ./rrqr.a
 wget https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz
 tar zxvf eigen-3.3.7.tar.gz
 cp -r eigen-3.3.7/Eigen ./
+mkdir unsupported
+cp -r eigen-3.3.7/unsupported/Eigen ./unsupported/

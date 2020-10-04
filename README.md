@@ -36,7 +36,7 @@ for gfortran and g++
 
 for g++
 
-- header files of Eigen (in 'Eigen' directory)
+- header files of Eigen (in 'Eigen' and 'unsupported' directory)
 
 ## Dependency
 
