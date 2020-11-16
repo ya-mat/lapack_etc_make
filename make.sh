@@ -75,9 +75,9 @@ cd ../
 cd ../
 ln -s rrqr_acm/rrqr.a ./rrqr.a
 
-# Eigen 3.3.7
-wget https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz
-tar zxvf eigen-3.3.7.tar.gz
-cp -r eigen-3.3.7/Eigen ./
+# Eigen 3.3.8
+wget https://gitlab.com/libeigen/eigen/-/archive/3.3.8/eigen-3.3.8.tar.gz
+tar zxvf eigen-3.3.8.tar.gz
+cp -r eigen-3.3.8/Eigen ./
 mkdir unsupported
-cp -r eigen-3.3.7/unsupported/Eigen ./unsupported/
+cp -r eigen-3.3.8/unsupported/Eigen ./unsupported/
