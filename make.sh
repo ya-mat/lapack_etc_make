@@ -21,6 +21,13 @@ ln -s lapack-3.9.0/librefblas.a ./librefblas.a
 ln -s lapack-3.9.0/liblapack.a ./liblapack.a
 ln -s lapack-3.9.0/libtmglib.a ./libtmglib.a
 
+# OpneBLAS
+git clone https://github.com/xianyi/OpenBLAS.git
+cd OpenBLAS
+make USE_THREAD=0 USE_LOCKING=1
+cd ../
+ln -s OpenBLAS/libopenblas_*.a ./libopenblas.a
+
 # slatec
 wget http://www.netlib.org/slatec/slatec_src.tgz
 tar zxvf slatec_src.tgz
