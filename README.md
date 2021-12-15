@@ -12,7 +12,7 @@ for gfortran and g++
 
 for g++
 
-- Eigen 3.3.9
+- Eigen 3.4.0
 
 ## How to use
 

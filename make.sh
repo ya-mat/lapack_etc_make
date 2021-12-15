@@ -9,6 +9,8 @@
 #sudo apt install libtool
 #sudo apt install cmake
 
+set -e
+
 # lapack
 wget https://github.com/Reference-LAPACK/lapack/archive/v3.9.0.tar.gz
 tar zxvf v3.9.0.tar.gz
@@ -82,9 +84,9 @@ cd ../
 cd ../
 ln -s rrqr_acm/rrqr.a ./rrqr.a
 
-# Eigen 3.3.9
-wget https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.gz
-tar zxvf eigen-3.3.9.tar.gz
-cp -r eigen-3.3.9/Eigen ./
+# Eigen 3.4.0
+wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+tar zxvf eigen-3.4.0.tar.gz
+cp -r eigen-3.4.0/Eigen ./
 mkdir unsupported
-cp -r eigen-3.3.9/unsupported/Eigen ./unsupported/
+cp -r eigen-3.4.0/unsupported/Eigen ./unsupported/
