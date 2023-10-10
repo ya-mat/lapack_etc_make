@@ -24,25 +24,28 @@ wget https://github.com/Reference-LAPACK/lapack/archive/v3.11.0.tar.gz \
 && ln -s lapack-3.11.0/libtmglib.a ./libtmglib.a
 
 # OpneBLAS (main of github)
-#wget https://github.com/xianyi/OpenBLAS/releases/download/v0.3.21/OpenBLAS-0.3.21.tar.gz \
-#&& tar zxvf OpenBLAS-0.3.21.tar.gz \
-#&& cd OpenBLAS-0.3.21 \
 git clone https://github.com/xianyi/OpenBLAS.git \
 && cd OpenBLAS \
 && make USE_THREAD=0 USE_LOCKING=1 \
 && cd ../ \
 && ln -s OpenBLAS/libopenblas_*.a ./libopenblas.a
 
-# slatec
-#wget http://www.netlib.org/slatec/slatec_src.tgz \
-wget https://netlib.org/slatec/slatec_src.tgz \
-&& tar zxvf slatec_src.tgz \
-&& cd src \
-&& wget http://www.netlib.org/slatec/slatec4linux.tgz \
-&& tar zxvf slatec4linux.tgz \
-&& env FC="gfortran -std=legacy" make \
+## slatec
+#wget https://netlib.org/slatec/slatec_src.tgz \
+#&& tar zxvf slatec_src.tgz \
+#&& cd src \
+#&& wget http://www.netlib.org/slatec/slatec4linux.tgz \
+#&& tar zxvf slatec4linux.tgz \
+#&& env FC="gfortran -std=legacy" make \
+#&& cd ../ \
+#&& ln -s src/static/libslatec.a ./libslatec.a
+
+# slatec-bessel-cpp
+git clone https://github.com/lloda/slatec-bessel-cpp.git \
+&& cd slatec-bessel-cpp \
+&& env CXX=g++ make libslatec-f2c.a \
 && cd ../ \
-&& ln -s src/static/libslatec.a ./libslatec.a
+&& ln -s slatec-bessel-cpp/libslatec-f2c.a ./libslatec-f2c.a
 
 # dfftpack
 wget http://www.netlib.org/fftpack/dp.tgz \
