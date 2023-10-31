@@ -24,11 +24,11 @@ wget https://github.com/Reference-LAPACK/lapack/archive/v3.11.0.tar.gz \
 && ln -s lapack-3.11.0/libtmglib.a ./libtmglib.a
 
 # OpneBLAS (main of github)
-git clone https://github.com/xianyi/OpenBLAS.git \
-&& cd OpenBLAS \
-&& make USE_THREAD=0 USE_LOCKING=1 \
-&& cd ../ \
-&& ln -s OpenBLAS/libopenblas_*.a ./libopenblas.a
+#git clone https://github.com/xianyi/OpenBLAS.git \
+#&& cd OpenBLAS \
+#&& make USE_THREAD=0 USE_LOCKING=1 \
+#&& cd ../ \
+#&& ln -s OpenBLAS/libopenblas_*.a ./libopenblas.a
 
 ## slatec
 #wget https://netlib.org/slatec/slatec_src.tgz \
@@ -46,6 +46,17 @@ git clone https://github.com/lloda/slatec-bessel-cpp.git \
 && env CXX=g++ make libslatec-f2c.a \
 && cd ../ \
 && ln -s slatec-bessel-cpp/libslatec-f2c.a ./libslatec-f2c.a
+
+# librefsol2Dhel.a
+git clone https://github.com/ya-mat/reference_solution_2d_helmholtz_scattering.git \
+&& cd reference_solution_2d_helmholtz_scattering \
+&& mkdir build \
+&& cd build \
+&& cmake .. \
+&& make \
+&& cd ../ \
+&& cd ../ \
+&& ln -s reference_solution_2d_helmholtz_scattering/bulid/librefsol2Dhel.a ./librefsol2Dhel.a
 
 # dfftpack
 wget http://www.netlib.org/fftpack/dp.tgz \
