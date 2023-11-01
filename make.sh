@@ -56,7 +56,7 @@ git clone https://github.com/ya-mat/reference_solution_2d_helmholtz_scattering.g
 && make \
 && cd ../ \
 && cd ../ \
-&& ln -s reference_solution_2d_helmholtz_scattering/bulid/librefsol2Dhel.a ./librefsol2Dhel.a
+&& ln -s reference_solution_2d_helmholtz_scattering/build/librefsol2Dhel.a ./librefsol2Dhel.a
 
 # dfftpack
 wget http://www.netlib.org/fftpack/dp.tgz \
