@@ -39,9 +39,9 @@ wget https://netlib.org/lapack95/lapack95.tgz \
 && sed -i -e 's/FC1      = f95 -fixed/FC1=gfortran/g' ./make.inc \
 && sed -i -e 's/OPTS0    = -u -V -dcfuns -dusty -ieee=full/OPTS0=-O2/g' ./make.inc \
 && sed -i -e 's/LAPACK_PATH = \/usr\/local\/lib\/LAPACK3\//LAPACK_PATH=..\//g' ./make.inc \
-&& sed -i -e 's/LAPACK77 = $(LAPACK_PATH)/lapack.a/LAPACK77=$(LAPACK_PATH)\/liblapack.a/g' ./make.inc \
-&& sed -i -e 's/TMG77    = $(LAPACK_PATH)/tmglib.a/TMG77=$(LAPACK_PATH)\/libtmglib.a/g' ./make.inc \
-&& sed -i -e 's/BLAS     = $(LAPACK_PATH)/blas.a/BLAS=$(LAPACK_PATH)\/librefblas.a/g' ./make.inc \
+&& sed -i -e 's/LAPACK77 = $(LAPACK_PATH)\/lapack.a/LAPACK77=$(LAPACK_PATH)\/liblapack.a/g' ./make.inc \
+&& sed -i -e 's/TMG77	 = $(LAPACK_PATH)\/tmglib.a/TMG77=$(LAPACK_PATH)\/libtmglib.a/g' ./make.inc \
+&& sed -i -e 's/BLAS	 = $(LAPACK_PATH)\/blas.a/BLAS=$(LAPACK_PATH)\/librefblas.a/g' ./make.inc \
 && cd SRC \
 && ulimit -s unlimited \
 && make single_double_complex_dcomplex \
