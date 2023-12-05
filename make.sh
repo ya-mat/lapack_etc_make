@@ -30,6 +30,26 @@ wget https://github.com/Reference-LAPACK/lapack/archive/v3.11.0.tar.gz \
 #&& cd ../ \
 #&& ln -s OpenBLAS/libopenblas_*.a ./libopenblas.a
 
+# lapack95 version 3.0
+wget https://netlib.org/lapack95/lapack95.tgz \
+&& tar zxvf lapack95.tgz \
+&& cd LAPACK95 \
+&& mkdir lapack95_modules \
+&& sed -i'.org' -e 's/FC	 = f95 -free/FC=gfortran/g' ./make.inc \
+&& sed -i -e 's/FC1      = f95 -fixed/FC1=gfortran/g' ./make.inc \
+&& sed -i -e 's/OPTS0    = -u -V -dcfuns -dusty -ieee=full/OPTS0=-O2/g' ./make.inc \
+&& sed -i -e 's/LAPACK_PATH = \/usr\/local\/lib\/LAPACK3\//LAPACK_PATH=..\//g' ./make.inc \
+&& sed -i -e 's/LAPACK77 = $(LAPACK_PATH)/lapack.a/LAPACK77=$(LAPACK_PATH)\/liblapack.a/g' ./make.inc \
+&& sed -i -e 's/TMG77    = $(LAPACK_PATH)/tmglib.a/TMG77=$(LAPACK_PATH)\/libtmglib.a/g' ./make.inc \
+&& sed -i -e 's/BLAS     = $(LAPACK_PATH)/blas.a/BLAS=$(LAPACK_PATH)\/librefblas.a/g' ./make.inc \
+&& cd SRC \
+&& ulimit -s unlimited \
+&& make single_double_complex_dcomplex \
+&& cd ../ \
+&& cd ../ \
+&& ln -s LAPACK95/lapack95.a ./liblapack95.a \
+&& ln -s LAPACK95/lapack95_modules ./lapack95_include
+
 ## slatec
 #wget https://netlib.org/slatec/slatec_src.tgz \
 #&& tar zxvf slatec_src.tgz \
