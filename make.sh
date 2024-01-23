@@ -2,6 +2,7 @@
 
 # before
 #sudo apt install gcc
+#sudo apt install g++
 #sudo apt install gfortran
 #sudo apt install wget
 #sudo apt install make

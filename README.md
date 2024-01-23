@@ -5,7 +5,8 @@ This is the shell script to make (static) libraries below using gfortran and gcc
 for gfortran and g++
 
 - lapack-3.9.0
-- slatec
+- lapack95
+- slatec-bessel-cpp
 - dfftpack
 - libcerf
 - ACM 782 RRQR
@@ -44,6 +45,7 @@ You must have already installed these softwares below.
 
 - gfortran
 - gcc
+- g++
 - make
 - libtool
 - wget
