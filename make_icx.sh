@@ -22,8 +22,8 @@ wget https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.12.0.tar.gz
 && ulimit -s unlimited \
 && env VERBOSE=1 make -j \
 && cd ../../ \
-&& ln -s lapack-3.12.0/build/lib/libblas.a ./librefblas.a \
-&& ln -s lapack-3.12.0/build/lib/liblapack.a ./liblapack.a
+&& ln -s lapack-3.12.0/build/lib/libblas.a ./librefblas_icx.a \
+&& ln -s lapack-3.12.0/build/lib/liblapack.a ./liblapack_icx.a
 
 # OpneBLAS (main of github)
 #git clone https://github.com/xianyi/OpenBLAS.git \
@@ -75,7 +75,7 @@ git clone https://github.com/lloda/slatec-bessel-cpp.git \
 && sed -i -e 's/LDFLAGS_F2C = -fopenmp/LDFLAGS_F2C =/g'./Makefile \
 && env CXX=icx FORTRAN=ifx make libslatec-f2c.a \
 && cd ../ \
-&& ln -s slatec-bessel-cpp/libslatec-f2c.a ./libslatec-f2c.a
+&& ln -s slatec-bessel-cpp/libslatec-f2c.a ./libslatec-f2c_icx.a
 
 # librefsol2Dhel.a
 #git clone https://github.com/ya-mat/reference_solution_2d_helmholtz_scattering.git \
