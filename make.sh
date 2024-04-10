@@ -12,17 +12,18 @@
 
 set -e
 
-# lapack v3.11
-wget https://github.com/Reference-LAPACK/lapack/archive/v3.11.0.tar.gz \
-&& tar zxvf v3.11.0.tar.gz \
-&& cd lapack-3.11.0 \
-&& cp make.inc.example make.inc \
+# lapack v3.12
+wget https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.12.0.tar.gz \
+&& tar zxvf v3.12.0.tar.gz \
+&& cd lapack-3.12.0 \
+&& mkdir build \
+&& cd build \
+&& cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_Fortran_COMPILER=gfortran .. \
 && ulimit -s unlimited \
-&& make \
-&& cd ../ \
-&& ln -s lapack-3.11.0/librefblas.a ./librefblas.a \
-&& ln -s lapack-3.11.0/liblapack.a ./liblapack.a \
-&& ln -s lapack-3.11.0/libtmglib.a ./libtmglib.a
+&& env VERBOSE=1 make -j \
+&& cd ../../ \
+&& ln -s lapack-3.12.0/build/lib/libblas.a ./librefblas.a \
+&& ln -s lapack-3.12.0/build/lib/liblapack.a ./liblapack.a
 
 # OpneBLAS (main of github)
 #git clone https://github.com/xianyi/OpenBLAS.git \
