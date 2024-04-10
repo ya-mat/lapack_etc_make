@@ -33,29 +33,30 @@ wget https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.12.0.tar.gz
 #&& ln -s OpenBLAS/libopenblas_*.a ./libopenblas.a
 
 # lapack95 version 3.0
-#wget https://netlib.org/lapack95/lapack95.tgz \
-#&& tar zxvf lapack95.tgz \
-#&& cd LAPACK95 \
-#&& mkdir lapack95_modules \
-#&& sed -i -e 's/= f95 -free/=gfortran/g' ./make.inc \
-#&& sed -i -e 's/FC1      = f95 -fixed/FC1=gfortran/g' ./make.inc \
-#&& sed -i -e 's/OPTS0    = -u -V -dcfuns -dusty -ieee=full/OPTS0=-O2/g' ./make.inc \
-#&& sed -i -e 's/LAPACK_PATH = \/usr\/local\/lib\/LAPACK3\//LAPACK_PATH=$(LIBRARY_PATH)/g' ./make.inc \
-#&& sed -i -e 's/LAPACK77 = $(LAPACK_PATH)\/lapack.a/LAPACK77=$(LAPACK_PATH)\/liblapack.a/g' ./make.inc \
-#&& sed -i -e 's/TMG77	 = $(LAPACK_PATH)\/tmglib.a/TMG77=$(LAPACK_PATH)\/libtmglib.a/g' ./make.inc \
-#&& sed -i -e 's/BLAS	 = $(LAPACK_PATH)\/blas.a/BLAS=$(LAPACK_PATH)\/librefblas.a/g' ./make.inc \
-#&& cd SRC \
-#&& ulimit -s unlimited \
-#&& make single_double_complex_dcomplex \
-#&& rm f77_lapack_single_double_complex_dcomplex.f90 \
-#&& wget https://raw.githubusercontent.com/ya-mat/lapack95_fixed_patch/main/f77_lapack_single_double_complex_dcomplex.f90 \
-#&& rm f95_lapack_single_double_complex_dcomplex.f90 \
-#&& wget https://raw.githubusercontent.com/ya-mat/lapack95_fixed_patch/main/f95_lapack_single_double_complex_dcomplex.f90 \
-#&& make single_double_complex_dcomplex \
-#&& cd ../ \
-#&& cd ../ \
-#&& ln -s LAPACK95/lapack95.a ./liblapack95.a \
-#&& ln -s LAPACK95/lapack95_modules ./lapack95_include
+wget https://netlib.org/lapack95/lapack95.tgz \
+&& tar zxvf lapack95.tgz \
+&& cd LAPACK95 \
+&& mkdir lapack95_modules \
+&& sed -i -e 's/= f95 -free/=ifx/g' ./make.inc \
+&& sed -i -e 's/= f95 -fixed/=ifx/g' ./make.inc \
+&& sed -i -e 's/= -u -V -dcfuns -dusty -ieee=full/=-O2/g' ./make.inc \
+&& sed -i -e 's/LAPACK_PATH = \/usr\/local\/lib\/LAPACK3\//LAPACK_PATH=$(LIBRARY_PATH)/g' ./make.inc \
+&& sed -i -e 's/LAPACK77 = $(LAPACK_PATH)\/lapack.a/LAPACK77=$(LAPACK_PATH)\/liblapack_icx.a/g' ./make.inc \
+&& sed -i -e 's/= $(LAPACK_PATH)\/tmglib.a/=$(LAPACK_PATH)\/libtmglib_icx.a/g' ./make.inc \
+&& sed -i -e 's/ = $(LAPACK_PATH)\/blas.a/=$(LAPACK_PATH)\/librefblas_icx.a/g' ./make.inc \
+&& cd SRC \
+&& ulimit -s unlimited \
+&& make single_double_complex_dcomplex \
+&& rm f77_lapack_single_double_complex_dcomplex.f90 \
+&& rm f95_lapack_single_double_complex_dcomplex.f90 \
+&& git clone https://github.com/ya-mat/lapack95_fixed_patch.git \
+&& cp lapack95_fixed_patch/f77_lapack_single_double_complex_dcomplex.f90 ./ \
+&& cp lapack95_fixed_patch/f95_lapack_single_double_complex_dcomplex.f90 ./ \
+&& make single_double_complex_dcomplex \
+&& cd ../ \
+&& cd ../ \
+&& ln -s LAPACK95/lapack95.a ./liblapack95_icx.a \
+&& ln -s LAPACK95/lapack95_modules ./lapack95_include
 
 ## slatec
 #wget https://netlib.org/slatec/slatec_src.tgz \
@@ -68,14 +69,21 @@ wget https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.12.0.tar.gz
 #&& ln -s src/static/libslatec.a ./libslatec.a
 
 # slatec-bessel-cpp
+#git clone https://github.com/lloda/slatec-bessel-cpp.git \
+#&& cd slatec-bessel-cpp \
+#&& sed -i -e 's/CXXFLAGS = -std=c++20 -Wall -Werror -Wno-parentheses -O2 -fopenmp/CXXFLAGS = -std=c++20 -O2/g' ./Makefile \
+#&& sed -i -e 's/LDFLAGS_FORTRAN = -lgfortran -fopenmp/LDFLAGS_FORTRAN = /g' ./Makefile \
+#&& sed -i -e 's/LDFLAGS_F2C = -fopenmp/LDFLAGS_F2C =/g' ./Makefile \
+#&& env CXX=icx FORTRAN=ifx make libslatec-f2c.a \
+#&& cd ../ \
+#&& ln -s slatec-bessel-cpp/libslatec-f2c.a ./libslatec-f2c_icx.a
 git clone https://github.com/lloda/slatec-bessel-cpp.git \
 && cd slatec-bessel-cpp \
-&& sed -i -e 's/CXXFLAGS = -std=c++20 -Wall -Werror -Wno-parentheses -O2 -fopenmp -I ./CXXFLAGS = -std=c++20 -O2 -I ./g'./Makefile \
-&& sed -i -e 's/LDFLAGS_FORTRAN = -lgfortran -fopenmp/LDFLAGS_FORTRAN = /g'./Makefile \
-&& sed -i -e 's/LDFLAGS_F2C = -fopenmp/LDFLAGS_F2C =/g'./Makefile \
-&& env CXX=icx FORTRAN=ifx make libslatec-f2c.a \
+&& sed -i -e 's/-std=c++20/-std=c++2a/g' ./Makefile \
+&& sed -i -e 's/-fopenmp/ /g' ./Makefile \
+&& env CXX=g++ make libslatec-f2c.a \
 && cd ../ \
-&& ln -s slatec-bessel-cpp/libslatec-f2c.a ./libslatec-f2c_icx.a
+&& ln -s slatec-bessel-cpp/libslatec-f2c.a ./libslatec-f2c.a
 
 # librefsol2Dhel.a
 #git clone https://github.com/ya-mat/reference_solution_2d_helmholtz_scattering.git \
@@ -96,7 +104,7 @@ wget http://www.netlib.org/fftpack/dp.tgz \
 && sed -e 's/FFLAGS=-O2 -funroll-loops -fexpensive-optimizations/FFLAGS=-O2/g' ./Makefile2 > ./Makefile \
 && make \
 && cd ../ \
-&& ln -s dfftpack/libdfftpack.a ./libdfftpack.a
+&& ln -s dfftpack/libdfftpack.a ./libdfftpack_icx.a
 
 # libcerf v1.15
 #wget https://jugit.fz-juelich.de/mlz/libcerf/-/archive/v1.15/libcerf-v1.15.tar.gz \
