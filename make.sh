@@ -19,7 +19,6 @@ wget https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.12.1.tar.gz
 && mkdir build \
 && cd build \
 && cmake -DBUILD_TESTING=OFF -DCMAKE_C_COMPILER=$CC -DCMAKE_Fortran_COMPILER=$FC -DCMAKE_INSTALL_PREFIX=../../ .. \
-&& ulimit -s unlimited \
 && env VERBOSE=1 cmake --build . -j --target install \
 && cd ../../
 

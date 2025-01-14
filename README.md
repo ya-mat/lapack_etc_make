@@ -18,10 +18,11 @@ for g++
 ## How to use
 
 ```
-git clone https://github.com/ya-mat/lapack_etc_make.git
-cd lapack_etc_make
-chmod u+x make.sh
-env CC=gcc CXX=g++ FC=gfortran F90=gfortran F77=gfortran ./make.sh
+git clone https://github.com/ya-mat/lapack_etc_make.git \
+&& cd lapack_etc_make \
+&& chmod u+x make.sh \
+&& ulimit -s unlimited \
+&& env CC=gcc CXX=g++ FC=gfortran F90=gfortran F77=gfortran ./make.sh
 ```
 
 You can get these libraries below.
