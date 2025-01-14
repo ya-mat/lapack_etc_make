@@ -42,7 +42,6 @@ wget https://netlib.org/lapack95/lapack95.tgz \
 && sed -i -e 's/TMG77	 = $(LAPACK_PATH)\/tmglib.a/TMG77=$(LAPACK_PATH)\/libtmglib.a/g' ./make.inc \
 && sed -i -e 's/BLAS	 = $(LAPACK_PATH)\/blas.a/BLAS=$(LAPACK_PATH)\/librefblas.a/g' ./make.inc \
 && cd SRC \
-&& ulimit -s unlimited \
 && make single_double_complex_dcomplex \
 && rm f77_lapack_single_double_complex_dcomplex.f90 \
 && wget https://raw.githubusercontent.com/ya-mat/lapack95_fixed_patch/main/f77_lapack_single_double_complex_dcomplex.f90 \
