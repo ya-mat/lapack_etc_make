@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # before
 #sudo apt install gcc
@@ -12,18 +12,16 @@
 
 set -e
 
-# lapack v3.12
-wget https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.12.0.tar.gz \
-&& tar zxvf v3.12.0.tar.gz \
-&& cd lapack-3.12.0 \
+# lapack v3.12.1
+wget https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.12.1.tar.gz \
+&& tar zxvf v3.12.1.tar.gz \
+&& cd lapack-3.12.1 \
 && mkdir build \
 && cd build \
-&& cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_Fortran_COMPILER=gfortran .. \
+&& cmake -DBUILD_TESTING=OFF -DCMAKE_C_COMPILER=$CC -DCMAKE_Fortran_COMPILER=$FC -DCMAKE_INSTALL_PREFIX=../../ .. \
 && ulimit -s unlimited \
-&& env VERBOSE=1 make -j \
-&& cd ../../ \
-&& ln -s lapack-3.12.0/build/lib/libblas.a ./librefblas.a \
-&& ln -s lapack-3.12.0/build/lib/liblapack.a ./liblapack.a
+&& env VERBOSE=1 cmake --build . -j --target install \
+&& cd ../../
 
 # OpneBLAS (main of github)
 #git clone https://github.com/xianyi/OpenBLAS.git \
@@ -54,8 +52,9 @@ wget https://netlib.org/lapack95/lapack95.tgz \
 && make single_double_complex_dcomplex \
 && cd ../ \
 && cd ../ \
-&& ln -s LAPACK95/lapack95.a ./liblapack95.a \
-&& ln -s LAPACK95/lapack95_modules ./lapack95_include
+&& ln -s LAPACK95/lapack95.a ./lib/liblapack95.a \
+&& mkdir include
+&& ln -s LAPACK95/lapack95_modules ./include/lapack95_modules
 
 ## slatec
 #wget https://netlib.org/slatec/slatec_src.tgz \
@@ -70,9 +69,9 @@ wget https://netlib.org/lapack95/lapack95.tgz \
 # slatec-bessel-cpp
 git clone https://github.com/lloda/slatec-bessel-cpp.git \
 && cd slatec-bessel-cpp \
-&& env CXX=g++ make libslatec-f2c.a \
+&& env CXX=$CXX make libslatec-f2c.a \
 && cd ../ \
-&& ln -s slatec-bessel-cpp/libslatec-f2c.a ./libslatec-f2c.a
+&& ln -s slatec-bessel-cpp/libslatec-f2c.a ./lib/libslatec-f2c.a
 
 # librefsol2Dhel.a
 git clone https://github.com/ya-mat/reference_solution_2d_helmholtz_scattering.git \
@@ -129,6 +128,6 @@ wget http://www.netlib.org/toms-2014-06-10/782 -O 782.sh \
 # Eigen 3.4.0
 wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz \
 && tar zxvf eigen-3.4.0.tar.gz \
-&& cp -r eigen-3.4.0/Eigen ./ \
-&& mkdir unsupported \
-&& cp -r eigen-3.4.0/unsupported/Eigen ./unsupported/
+&& cmake -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_INSTALL_PREFIX=../../ ..
+&& make install \
+&& cd ../../

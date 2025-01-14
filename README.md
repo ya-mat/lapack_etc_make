@@ -20,7 +20,8 @@ for g++
 ```
 git clone https://github.com/ya-mat/lapack_etc_make.git
 cd lapack_etc_make
-sh make.sh
+chmod u+x make.sh
+env CC=gcc CXX=g++ FC=gfortran F90=gfortran F77=gfortran ./make.sh
 ```
 
 You can get these libraries below.
