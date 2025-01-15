@@ -51,9 +51,13 @@ wget https://netlib.org/lapack95/lapack95.tgz \
 && cd ../ \
 && cd ../ \
 && if [ ! -d "lib" ]; then mkdir lib; echo "Directory 'lib' created."; else echo "Directory 'lib' already exists."; fi \
-&& ln -s LAPACK95/lapack95.a ./lib/liblapack95.a \
+&& cd lib \
+&& ln -s ../LAPACK95/lapack95.a liblapack95.a \
+&& cd ../ \
 && if [ ! -d "include" ]; then mkdir include; echo "Directory 'include' created."; else echo "Directory 'include' already exists."; fi \
-&& ln -s LAPACK95/lapack95_modules ./include/lapack95_modules
+&& cd include \
+&& ln -s ../LAPACK95/lapack95_modules lapack95_modules \
+&& cd ../
 
 ## slatec
 #wget https://netlib.org/slatec/slatec_src.tgz \
@@ -70,7 +74,12 @@ git clone https://github.com/lloda/slatec-bessel-cpp.git \
 && cd slatec-bessel-cpp \
 && env CXX=$CXX make libslatec-f2c.a \
 && cd ../ \
-&& ln -s slatec-bessel-cpp/libslatec-f2c.a ./lib/libslatec-f2c.a
+&& cd lib \
+&& ln -s ../slatec-bessel-cpp/libslatec-f2c.a libslatec-f2c.a \
+&& cd ../ \
+&& cd include \
+&& ln -s ../slatec-bessel-cpp/f2c slatec-bessel-cpp \
+&& cd ../
 
 # librefsol2Dhel.a
 git clone https://github.com/ya-mat/reference_solution_2d_helmholtz_scattering.git \
@@ -81,7 +90,9 @@ git clone https://github.com/ya-mat/reference_solution_2d_helmholtz_scattering.g
 && make \
 && cd ../ \
 && cd ../ \
-&& ln -s reference_solution_2d_helmholtz_scattering/build/librefsol2Dhel.a ./lib/librefsol2Dhel.a
+&& cd lib \
+&& ln -s ../reference_solution_2d_helmholtz_scattering/build/librefsol2Dhel.a librefsol2Dhel.a \
+&& cd ../
 
 # dfftpack
 wget http://www.netlib.org/fftpack/dp.tgz \
@@ -91,7 +102,9 @@ wget http://www.netlib.org/fftpack/dp.tgz \
 && sed -e 's/FFLAGS=-O2 -funroll-loops -fexpensive-optimizations/FFLAGS=-O2/g' ./Makefile2 > ./Makefile \
 && make \
 && cd ../ \
-&& ln -s dfftpack/libdfftpack.a ./lib/libdfftpack.a
+&& cd lib \
+&& ln -s ../dfftpack/libdfftpack.a libdfftpack.a \
+&& cd ../
 
 # libcerf v1.15
 wget https://jugit.fz-juelich.de/mlz/libcerf/-/archive/v1.15/libcerf-v1.15.tar.gz \
@@ -103,8 +116,10 @@ wget https://jugit.fz-juelich.de/mlz/libcerf/-/archive/v1.15/libcerf-v1.15.tar.g
 && make \
 && cd ../ \
 && cd ../ \
-&& ln -s libcerf-v1.15/build/lib/libcerf.a ./lib/libcerf.a \
-&& cp libcerf-v1.15/fortran/ccerflib_f95_interface/use_libcerf_mod.f90 ./include/
+&& cp libcerf-v1.15/fortran/ccerflib_f95_interface/use_libcerf_mod.f90 ./include/ \
+&& cd lib \
+&& ln -s ../libcerf-v1.15/build/lib/libcerf.a libcerf.a \
+&& cd ../
 
 # ACM 782 RRQR
 # "sed -i '1,3d' 782.sh" remove the top 3 lines with the ACM info
@@ -122,7 +137,9 @@ wget http://www.netlib.org/toms-2014-06-10/782 -O 782.sh \
 && make \
 && cd ../ \
 && cd ../ \
-&& ln -s rrqr_acm/rrqr.a ./lib/rrqr.a
+&& cd lib \
+&& ln -s ../rrqr_acm/rrqr.a rrqr.a \
+&& cd ../
 
 # Eigen 3.4.0
 wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz \
