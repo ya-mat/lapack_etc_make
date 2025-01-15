@@ -51,7 +51,7 @@ wget https://netlib.org/lapack95/lapack95.tgz \
 && cd ../ \
 && cd ../ \
 && ln -s LAPACK95/lapack95.a ./lib/liblapack95.a \
-&& mkdir include
+&& mkdir include \
 && ln -s LAPACK95/lapack95_modules ./include/lapack95_modules
 
 ## slatec

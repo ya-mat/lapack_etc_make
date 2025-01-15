@@ -17,9 +17,15 @@ for g++
 
 ## How to use
 
+Clone this repo.
+
 ```
-git clone https://github.com/ya-mat/lapack_etc_make.git \
-&& cd lapack_etc_make \
+git clone https://github.com/ya-mat/lapack_etc_make.git
+```
+
+Make lib in linux system.
+```
+cd lapack_etc_make \
 && chmod u+x make.sh \
 && ulimit -s unlimited \
 && env CC=gcc CXX=g++ FC=gfortran F90=gfortran F77=gfortran ./make.sh
