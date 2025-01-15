@@ -130,6 +130,6 @@ wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz \
 && cd eigen-3.4.0 \
 && mkdir build \
 && cd build \
-&& cmake -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_INSTALL_PREFIX=../../ ..
+&& cmake -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_INSTALL_PREFIX=../../ .. \
 && env VERBOSE=1 cmake --build . -j --target install \
 && cd ../../
