@@ -81,7 +81,7 @@ git clone https://github.com/ya-mat/reference_solution_2d_helmholtz_scattering.g
 && make \
 && cd ../ \
 && cd ../ \
-&& ln -s reference_solution_2d_helmholtz_scattering/build/librefsol2Dhel.a ./librefsol2Dhel.a
+&& ln -s reference_solution_2d_helmholtz_scattering/build/librefsol2Dhel.a ./lib/librefsol2Dhel.a
 
 # dfftpack
 wget http://www.netlib.org/fftpack/dp.tgz \
@@ -91,7 +91,7 @@ wget http://www.netlib.org/fftpack/dp.tgz \
 && sed -e 's/FFLAGS=-O2 -funroll-loops -fexpensive-optimizations/FFLAGS=-O2/g' ./Makefile2 > ./Makefile \
 && make \
 && cd ../ \
-&& ln -s dfftpack/libdfftpack.a ./libdfftpack.a
+&& ln -s dfftpack/libdfftpack.a ./lib/libdfftpack.a
 
 # libcerf v1.15
 wget https://jugit.fz-juelich.de/mlz/libcerf/-/archive/v1.15/libcerf-v1.15.tar.gz \
@@ -103,8 +103,8 @@ wget https://jugit.fz-juelich.de/mlz/libcerf/-/archive/v1.15/libcerf-v1.15.tar.g
 && make \
 && cd ../ \
 && cd ../ \
-&& ln -s libcerf-v1.15/build/lib/libcerf.a ./libcerf.a \
-&& cp libcerf-v1.15/fortran/ccerflib_f95_interface/use_libcerf_mod.f90 ./
+&& ln -s libcerf-v1.15/build/lib/libcerf.a ./lib/libcerf.a \
+&& cp libcerf-v1.15/fortran/ccerflib_f95_interface/use_libcerf_mod.f90 ./include/
 
 # ACM 782 RRQR
 # "sed -i '1,3d' 782.sh" remove the top 3 lines with the ACM info
@@ -122,7 +122,7 @@ wget http://www.netlib.org/toms-2014-06-10/782 -O 782.sh \
 && make \
 && cd ../ \
 && cd ../ \
-&& ln -s rrqr_acm/rrqr.a ./rrqr.a
+&& ln -s rrqr_acm/rrqr.a ./lib/rrqr.a
 
 # Eigen 3.4.0
 wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz \
