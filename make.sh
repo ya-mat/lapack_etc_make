@@ -127,6 +127,9 @@ wget http://www.netlib.org/toms-2014-06-10/782 -O 782.sh \
 # Eigen 3.4.0
 wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz \
 && tar zxvf eigen-3.4.0.tar.gz \
+&& cd eigen-3.4.0 \
+&& mkdir build \
+&& cd build \
 && cmake -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_INSTALL_PREFIX=../../ ..
-&& make install \
+&& env VERBOSE=1 cmake --build . -j --target install \
 && cd ../../
