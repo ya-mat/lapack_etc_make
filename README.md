@@ -25,8 +25,8 @@ git clone https://github.com/ya-mat/lapack_etc_make.git
 
 Make lib in linux system.
 ```
-cd lapack_etc_make \
-&& chmod u+x make.sh \
+cd lapack_etc_make
+chmod u+x make.sh \
 && ulimit -s unlimited \
 && env CC=gcc CXX=g++ FC=gfortran F90=gfortran F77=gfortran ./make.sh
 ```
@@ -34,9 +34,8 @@ cd lapack_etc_make \
 If you use mac OS and homebrew, next command is useful.
 
 ```
-git clone https://github.com/ya-mat/lapack_etc_make.git \
-&& cd lapack_etc_make \
-&& chmod u+x make.sh \
+cd lapack_etc_make
+chmod u+x make.sh \
 && ulimit -s unlimited \
 && env CC=gcc-14 CXX=g++-14 FC=gfortran-14 F90=gfortran-14 F77=gfortran-14 ./make.sh
 ```
