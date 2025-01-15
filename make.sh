@@ -50,9 +50,9 @@ wget https://netlib.org/lapack95/lapack95.tgz \
 && make single_double_complex_dcomplex \
 && cd ../ \
 && cd ../ \
-&& mkdir lib \
+&& if [ ! -d "lib" ]; then mkdir lib; echo "Directory 'lib' created."; else echo "Directory 'lib' already exists."; fi \
 && ln -s LAPACK95/lapack95.a ./lib/liblapack95.a \
-&& mkdir include \
+&& if [ ! -d "include" ]; then mkdir include; echo "Directory 'include' created."; else echo "Directory 'include' already exists."; fi \
 && ln -s LAPACK95/lapack95_modules ./include/lapack95_modules
 
 ## slatec
