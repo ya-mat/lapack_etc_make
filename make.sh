@@ -50,6 +50,7 @@ wget https://netlib.org/lapack95/lapack95.tgz \
 && make single_double_complex_dcomplex \
 && cd ../ \
 && cd ../ \
+&& mkdir lib \
 && ln -s LAPACK95/lapack95.a ./lib/liblapack95.a \
 && mkdir include \
 && ln -s LAPACK95/lapack95_modules ./include/lapack95_modules
