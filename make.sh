@@ -150,3 +150,10 @@ wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz \
 && cmake -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_INSTALL_PREFIX=../../ .. \
 && env VERBOSE=1 cmake --build . -j --target install \
 && cd ../../
+
+# Boost 1.87
+wget https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz \
+&& tar zxvf boost_1_87_0.tar.gz \
+&& cd boost_1_87_0 \
+&& ./bootstrap.sh \
+&& ./b2 install -j --prefix=../
