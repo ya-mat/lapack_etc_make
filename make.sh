@@ -156,4 +156,5 @@ wget https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz \
 && tar zxvf boost_1_87_0.tar.gz \
 && cd boost_1_87_0 \
 && ./bootstrap.sh \
-&& ./b2 install -j16 --prefix=../
+&& ./b2 install -j16 --prefix=../ \
+&& cd ../
